@@ -37,10 +37,10 @@ public class PalindromeController {
 
 
     private boolean isPalindrome(String text) {
-        // Normalize the input text: remove non-alphabetic characters and convert to lowercase
+        // remove non-alphabetic characters and convert to lowercase
         String normalizedText = text.replaceAll("[^a-zA-Z]", "").toLowerCase();
 
-        // Print the normalized text for debugging purposes
+        // print the normalized text for debugging purposes
         System.out.println("Normalized text: " + normalizedText);
 
         int left = 0;
@@ -60,12 +60,12 @@ public class PalindromeController {
         String resultFilename = "palindrome_results.txt";
         Path resultFile = Paths.get(resultFilename);
 
-        // Create the file if it doesn't exist
+        // create the file if it doesn't exist
         if (!Files.exists(resultFile)) {
             Files.createFile(resultFile);
         }
 
-        // Append the result to the file
+        // change the result to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(resultFilename, true))) {
             writer.write(String.format("%s: %s\n", username, isPalindrome ? "Palindrome" : "Not Palindrome"));
         }
