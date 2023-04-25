@@ -13,10 +13,6 @@ import java.nio.file.Paths;
 import java.util.concurrent.ConcurrentHashMap;
 
 
-
-
-
-
 @RestController
 public class PalindromeController {
     private final ConcurrentHashMap<String, Boolean> cache = new ConcurrentHashMap<>();
