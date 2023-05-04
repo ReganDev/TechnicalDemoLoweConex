@@ -1,5 +1,4 @@
 package com.example.demo;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @RestController
@@ -37,6 +38,14 @@ public class PalindromeController {
 
 
     private boolean isPalindrome(String text) {
+        // Check if the input contains numbers, spaces, or punctuation
+        Pattern pattern = Pattern.compile("[0-9\\s\\p{Punct}]");
+        Matcher matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            System.out.println("Input contains invalid characters, please try again");
+            return false;
+        }
+
         // remove non-alphabetic characters and convert to lowercase
         String normalizedText = text.replaceAll("[^a-zA-Z]", "").toLowerCase();
 
@@ -50,6 +59,7 @@ public class PalindromeController {
             if (normalizedText.charAt(left) != normalizedText.charAt(right)) {
                 return false;
             }
+            //loop continues until left is no longer less than right
             left++;
             right--;
         }
